@@ -64,3 +64,23 @@ Route::get('/reset', function () {
 Route::get('/blocked', function () {
     return view('user/blocked');
 });
+
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
+});
+
+Route::get('/admin/users', function () {
+    return view('admin/users');
+});
+
+Route::get('/admin/products', function () {
+    return view('admin/products');
+});
+
+Route::get('/admin/categories', function () {
+    return view('admin/categories');
+});
+
+Route::get('/admin/transactions', function () {
+    return view('admin/transactions');
+});
