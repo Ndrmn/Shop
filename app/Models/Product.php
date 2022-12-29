@@ -9,6 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $table = 'products';
     protected $fillable = [
         'brand',
         'model',
@@ -27,5 +28,8 @@ class Product extends Model
     {
         return $this->belongsTo(Type::class, 'type_id', 'id');
     }
-
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'product_id');
+    }
 }
