@@ -84,3 +84,18 @@ Route::get('/admin/categories', function () {
 Route::get('/admin/transactions', function () {
     return view('admin/transactions');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('admin')->group(function () {
+    Route::get('login', 'Auth\AdminLoginController@login')->name('admin.auth.login');
+        Route::post('login', 'Auth\AdminLoginController@loginAdmin')->name('admin.auth.loginAdmin');
+        Route::post('logout', 'Auth\AdminLoginController@logout')->name('admin.auth.logout');
+    });
+Route::group(['middleware' => ['auth:admin']], function () {
+    Route::get('admin/', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
