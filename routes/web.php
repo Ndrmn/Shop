@@ -77,13 +77,22 @@ Route::get('/admin/products', function () {
     return view('admin/products');
 });
 
-Route::get('/admin/categories', function () {
-    return view('admin/categories');
-});
+Route::get('/admin/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
+Route::post('/admin/categories', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+Route::patch('/admin/categories/{category}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+Route::delete('/admin/categories/{category}/destroy', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
+
+Route::post('/admin/types', [App\Http\Controllers\TypeController::class, 'store'])->name('type.store');
+Route::patch('/admin/types/{type}', [App\Http\Controllers\TypeController::class, 'update'])->name('type.update');
+Route::delete('/admin/types/{type}/destroy', [App\Http\Controllers\TypeController::class, 'destroy'])->name('type.delete');
+
 
 Route::get('/admin/transactions', function () {
     return view('admin/transactions');
 });
+
+
+
 
 Auth::routes();
 

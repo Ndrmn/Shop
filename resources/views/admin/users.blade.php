@@ -42,27 +42,27 @@
 
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="tables-bootstrap.html">
+                    <a class="sidebar-link" href="{{asset('admin/dashboard')}}">
                         <i class="align-middle me-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{asset('admin/products')}}">
+                        <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Products</span>
+                    </a>
+                </li>
                 <li class="sidebar-item active">
-                    <a class="sidebar-link" href="tables-bootstrap.html">
+                    <a class="sidebar-link" href="{{asset('admin/users')}}">
                         <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Users</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="tables-bootstrap.html">
-                        <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Products</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="tables-bootstrap.html">
+                    <a class="sidebar-link" href="{{asset('admin/categories')}}">
                         <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Categories</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="tables-bootstrap.html">
+                    <a class="sidebar-link" href="{{asset('admin/transactions')}}">
                         <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Transactions</span>
                     </a>
                 </li>
