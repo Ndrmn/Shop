@@ -18,13 +18,12 @@ return new class extends Migration
             $table->timestamps();
             $table->string('brand');
             $table->string('model');
-            $table->unsignedFloat('price');
+            $table->unsignedDecimal('price');
             $table->boolean('is_active')->default(1);
             $table->softDeletes();
-
+            $table->text('description');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->on('categories')->references('id');
-
             $table->unsignedBigInteger('type_id')->nullable();
             $table->foreign('type_id')->on('types')->references('id');
         });

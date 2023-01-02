@@ -50,9 +50,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{asset('admin/products')}}">
-                        <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Products</span>
+                    <a data-bs-target="#datatables" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                        <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Add product</span>
                     </a>
+                    <ul id="datatables" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                        <li class="sidebar-item"><a class="sidebar-link" href="{{asset('admin/products/all')}}">All products</a></li>
+                        <li class="sidebar-item active"><a class="sidebar-link" href="{{asset('admin/products/add')}}">Add new</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-column-search.html">Featured</a></li>
+                    </ul>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{asset('admin/users')}}">

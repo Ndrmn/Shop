@@ -73,9 +73,13 @@ Route::get('/admin/users', function () {
     return view('admin/users');
 });
 
-Route::get('/admin/products', function () {
-    return view('admin/products');
+Route::get('/admin/products/all', function () {
+    return view('admin/allproducts');
 });
+
+Route::get('/admin/products/all', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+Route::get('/admin/products/add', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
+Route::post('/admin/products/add', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
 
 Route::get('/admin/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
 Route::post('/admin/categories', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
