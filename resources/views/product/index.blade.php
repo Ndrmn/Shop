@@ -157,107 +157,46 @@
                                     </div>
                                 </div>
                                 <div class="product-grid">
-                                    <div class="card rounded-0 product-card">
-                                        <div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
-                                            <a href="javascript:;">
-                                                <div class="product-wishlist"> <i class="bx bx-heart"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="assets/images/products/01.png" class="img-fluid" alt="...">
+                                    @foreach($products as $product)
+                                        <div class="card rounded-0 product-card">
+                                            <div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
+                                                <a href="{{asset('/products/' . $product->id )}}">
+                                                    <div class="product-wishlist"> <i class="bx bx-heart"></i>
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <div class="product-info">
-                                                        <a href="javascript:;">
-                                                            <h6 class="product-name mb-2">Product Short Name</h6>
-                                                        </a>
-                                                        <p class="card-text me-5">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="mb-1 product-price">
-                                                                <span class="fs-5">$49.00</span>
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    @foreach($product->images as $image)
+                                                        @if ($loop->first)
+                                                        <img src="{{asset('/storage/' . $image->url)}}" class="img-fluid" alt="...">
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <div class="product-info">
+                                                            <a href="javascript:;">
+                                                                <h6 class="product-name mb-2">{{$product->brand . ' ' . $product->model}}</h6>
+                                                            </a>
+                                                            <p class="card-text me-5">{{$product->description}}</p>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="mb-1 product-price">
+                                                                    <span class="fs-5">${{$product->price}}</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-action mt-2">
-                                                            <div class="d-flex gap-2">
-                                                                <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class="bx bx-zoom-in"></i>Details</a>
+                                                            <div class="product-action mt-2">
+                                                                <div class="d-flex gap-2">
+                                                                    <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="/products/{{$product->id}}" class="btn btn-light btn-ecomm"><i class="bx bx-zoom-in"></i>Details</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="border-top my-3"></div>
-                                    <div class="card rounded-0 product-card">
-                                        <div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
-                                            <a href="javascript:;">
-                                                <div class="product-wishlist"> <i class="bx bx-heart"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="assets/images/products/02.png" class="img-fluid" alt="...">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <div class="product-info">
-                                                        <a href="javascript:;">
-                                                            <h6 class="product-name mb-2">Product Short Name</h6>
-                                                        </a>
-                                                        <p class="card-text me-5">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="mb-1 product-price">
-                                                                <span class="fs-5">$49.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-action mt-2">
-                                                            <div class="d-flex gap-2">
-                                                                <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class="bx bx-zoom-in"></i>Details</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="border-top my-3"></div>
-                                    <div class="card rounded-0 product-card">
-                                        <div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
-                                            <a href="javascript:;">
-                                                <div class="product-wishlist"> <i class="bx bx-heart"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="assets/images/products/03.png" class="img-fluid" alt="...">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <div class="product-info">
-                                                        <a href="javascript:;">
-                                                            <h6 class="product-name mb-2">Product Short Name</h6>
-                                                        </a>
-                                                        <p class="card-text me-5">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="mb-1 product-price">
-                                                                <span class="fs-5">$49.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-action mt-2">
-                                                            <div class="d-flex gap-2">
-                                                                <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class="bx bx-zoom-in"></i>Details</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <div class="border-top my-3"></div>
+                                    @endforeach
                                 </div>
                                 <hr>
                                 <nav class="d-flex justify-content-between" aria-label="Page navigation">

@@ -76,10 +76,18 @@ Route::get('/admin/users', function () {
 Route::get('/admin/products/all', function () {
     return view('admin/allproducts');
 });
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+Route::get('/products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
 
-Route::get('/admin/products/all', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+
+Route::get('/admin/products/all', [App\Http\Controllers\ProductController::class, 'indexAdmin'])->name('product.indexAdmin');
 Route::get('/admin/products/add', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
 Route::post('/admin/products/add', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
+Route::get('/admin/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
+Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'active'])->name('product.active');
+Route::delete('/admin/products/{product}/destroy', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
+
 
 Route::get('/admin/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
 Route::post('/admin/categories', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');

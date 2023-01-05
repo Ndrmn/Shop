@@ -49,11 +49,11 @@
 
                 <li class="sidebar-item">
                     <a data-bs-target="#datatables" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                        <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">All products</span>
+                        <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Add product</span>
                     </a>
                     <ul id="datatables" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                        <li class="sidebar-item active"><a class="sidebar-link" href="{{asset('admin/products/all')}}">All products</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{asset('admin/products/add')}}">Add new</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="{{asset('admin/products/all')}}">All products</a></li>
+                        <li class="sidebar-item active"><a class="sidebar-link" href="{{asset('admin/products/add')}}">Add new</a></li>
                         <li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-column-search.html">Featured</a></li>
                     </ul>
                 </li>
@@ -229,119 +229,67 @@
         </nav>
         <main class="content">
             <div class="container-fluid">
-
                 <div class="header">
                     <h1 class="header-title">
-                        Products
+                        Add product
                     </h1>
                 </div>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
-                    <div class="col-xxl-12">
+                    <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <div class="card-actions float-end">
-                                    <a href="#" class="me-1">
-                                        <i class="align-middle" data-feather="refresh-cw"></i>
-                                    </a>
-                                    <div class="d-inline-block dropdown show">
-                                        <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-                                            <i class="align-middle" data-feather="more-vertical"></i>
-                                        </a>
-
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="card-body">
+                                <form action="{{route('product.update', $product->id)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('patch')
+                                    <div class="mb-3">
+                                        <label class="form-label">Brand</label>
+                                        <input type="text" name="brand" class="form-control" placeholder="Brand" minlength="3" maxlength="100" required value="{{old('brand') ? old('brand') : $product->brand}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Model</label>
+                                        <input type="text" name="model" class="form-control" placeholder="Model" minlength="1" maxlength="255" required value="{{old('model') ? old('model') : $product->model}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <textarea class="form-control" name="description" placeholder="Description" rows="3" minlength="5" maxlength="65535" required>{{old('description') ? old('description') : $product->description}}</textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Price</label>
+                                        <input type="number" min="0" name="price" class="form-control" placeholder="Price" required value="{{old('price') ? old('price') : $product->price}}">
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Category</label>
+                                            <select class="form-select" name="category_id" required>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}" {{ "$category->id" == old('category_id') ? 'selected' : '' }}>{{$category->title}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Type</label>
+                                            <select class="form-select" name="type_id" required>
+                                                @foreach($types as $type)
+                                                <option value="{{$type->id}}" {{ "$type->id" == old('type_id') ? 'selected' : '' }}>{{$type->title}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <table id="datatables-clients" class="table table-striped" style="width:100%">
-                                    <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Created at</th>
-                                        <th>Updated at</th>
-                                        <th>Brand</th>
-                                        <th>Model</th>
-                                        <th>Category</th>
-                                        <th>Type</th>
-                                        <th>Description</th>
-                                        <th>Images</th>
-                                        <th>Price</th>
-                                        <th>Actions</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($products as $product)
-                                        <tr>
-                                            <td>{{$product->id}}</td>
-                                            <td>{{$product->created_at}}</td>
-                                            <td>{{$product->updated_at}}</td>
-                                            <td>{{$product->brand}}</td>
-                                            <td>{{$product->model}}</td>
-                                            <td>
-                                                @foreach($categories as $category)
-                                                    @if($category->id == $product->category_id)
-                                                        {{$category->title}}
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                @foreach($types as $type)
-                                                    @if($type->id == $product->type_id)
-                                                        {{$type->title}}
-                                                    @endif
-                                                @endforeach
-                                            </td>
-                                            <td>{{$product->description}}</td>
-                                            <td>
-                                                @foreach($product->images as $image)
-                                                    <img src="{{asset('/storage/' . $image->url)}}" width="32" height="32" class="rounded my-n1" alt="image">
-                                                @endforeach
-{{--                                                <img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">--}}
-                                            </td>
-                                            <td>$ {{$product->price}}</td>
-                                            <td>
-                                                <a href="{{asset('admin/products/' . $product->id . '/edit')}}"><i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i></a>
-{{--                                                <i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i>--}}
-                                                    @if($product->is_active == 1)
-                                                    <form action="{{ route('product.active', $product->id) }}" method="post">
-                                                        @csrf
-                                                        @method('patch')
-                                                        <input type="text" style="display: none" name="is_active" value="0">
-                                                        <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-arrow-down"></i></button>
-                                                    </form>
-                                                    @endif
-                                                    @if($product->is_active == 0)
-                                                        <form action="{{ route('product.active', $product->id) }}" method="post">
-                                                            @csrf
-                                                            @method('patch')
-                                                            <input type="text" style="display: none" name="is_active" value="1">
-                                                            <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-arrow-up"></i></button>
-                                                        </form>
-                                                    @endif
-                                                <form action="{{ route('product.delete', $product->id) }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button style="padding:0px;" class="btn btn-outline-white" type="submit" value="Delete"><i class="align-middle fas fa-fw fa-trash"></i></button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                            @if($product->is_active == 1)
-                                                    <span class="badge bg-success">Active</span>
-                                            @endif
-                                            @if($product->is_active == 0)
-                                                    <span class="badge bg-warning">Inactive</span>
-                                            @endif
-                                                {{--                                            <span class="badge bg-danger">Deleted</span>--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                    <div class="mb-3">
+                                        <label class="form-label w-100">Upload images</label>
+                                        <input type="file" name="images[]" required multiple accept="image/*,image/jpeg">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </form>
                             </div>
                         </div>
                     </div>
