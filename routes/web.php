@@ -86,6 +86,7 @@ Route::post('/admin/products/add', [App\Http\Controllers\ProductController::clas
 Route::get('/admin/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
 Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
 Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'active'])->name('product.active');
+Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'featured'])->name('product.featured');
 Route::delete('/admin/products/{product}/destroy', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
 
 

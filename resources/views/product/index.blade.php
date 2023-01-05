@@ -70,42 +70,14 @@
                                         <div class="product-brands">
                                             <h6 class="text-uppercase mb-3">Brands</h6>
                                             <ul class="list-unstyled mb-0 categories-list">
+                                                @foreach($brands as $brand)
                                                 <li>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Brand">
-                                                        <label class="form-check-label" for="Adidas">Brand</label>
+                                                        <input class="form-check-input" type="checkbox" value="" name="{{$brand->id}}" id="Brand">
+                                                        <label class="form-check-label" for="Adidas">{{$brand->title}}</label>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Brand">
-                                                        <label class="form-check-label" for="Armani">Brand</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Brand">
-                                                        <label class="form-check-label" for="CalvinKlein">Brand</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Brand">
-                                                        <label class="form-check-label" for="Columbia">Brand</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Brand">
-                                                        <label class="form-check-label" for="JhonPlayers">Brand</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Brand">
-                                                        <label class="form-check-label" for="Diesel">Brand</label>
-                                                    </div>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>

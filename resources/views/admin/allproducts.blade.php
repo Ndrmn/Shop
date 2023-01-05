@@ -280,7 +280,13 @@
                                             <td>{{$product->id}}</td>
                                             <td>{{$product->created_at}}</td>
                                             <td>{{$product->updated_at}}</td>
-                                            <td>{{$product->brand}}</td>
+                                            <td>
+                                                @foreach($brands as $brand)
+                                                    @if($brand->id == $product->brand_id)
+                                                        {{$brand->title}}
+                                                    @endif
+                                                @endforeach
+                                            </td>
                                             <td>{{$product->model}}</td>
                                             <td>
                                                 @foreach($categories as $category)
@@ -320,9 +326,25 @@
                                                             @csrf
                                                             @method('patch')
                                                             <input type="text" style="display: none" name="is_active" value="1">
-                                                            <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-arrow-up"></i></button>
+                                                            <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-plus"></i></button>
                                                         </form>
                                                     @endif
+                                                @if($product->featured == 0)
+                                                    <form action="{{ route('product.featured', $product->id) }}" method="post">
+                                                        @csrf
+                                                        @method('patch')
+                                                        <input type="text" style="display: none" name="featured" value="1">
+                                                        <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-minus"></i></button>
+                                                    </form>
+                                                @endif
+                                                @if($product->featured == 1)
+                                                    <form action="{{ route('product.featured', $product->id) }}" method="post">
+                                                        @csrf
+                                                        @method('patch')
+                                                        <input type="text" style="display: none" name="is_active" value="0">
+                                                        <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-arrow-up"></i></button>
+                                                    </form>
+                                                @endif
                                                 <form action="{{ route('product.delete', $product->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')

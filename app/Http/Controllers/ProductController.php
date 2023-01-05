@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Type;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -13,13 +14,13 @@ class ProductController extends Controller
 {
     public function indexAdmin() {
 
-        return view('admin.allproducts', ['products' => Product::with('images')->get(), 'categories' => Category::all(), 'types' => Type::all()]);
+        return view('admin.allproducts', ['products' => Product::with('images')->get(), 'categories' => Category::all(), 'types' => Type::all(), 'brands' => Brand::all()]);
 
     }
 
     public function index() {
 
-        return view('product.index', ['products' => Product::with('images')->where('is_active', 1)->get(), 'categories' => Category::all(), 'types' => Type::all()]);
+        return view('product.index', ['products' => Product::with('images')->where('is_active', 1)->get(), 'categories' => Category::all(), 'types' => Type::all(), 'brands' => Brand::all()]);
 
     }
 
@@ -32,12 +33,12 @@ class ProductController extends Controller
 
     public function create() {
 
-        return view('admin.addproduct', ['categories' => Category::all(), 'types' => Type::all()]);
+        return view('admin.addproduct', ['categories' => Category::all(), 'types' => Type::all(), 'brands' => Brand::all()]);
     }
 
     public function store(ProductRequest $request) {
         $product = Product::create([
-            'brand' => $request->brand,
+            'brand_id' => $request->brand_id,
             'model' => $request->model,
             'description' => $request->description,
             'price' => $request->price,
@@ -57,13 +58,13 @@ class ProductController extends Controller
 
     public function edit(Product $product) {
 
-        return view('admin.updateproduct', ['product' => $product, 'categories' => Category::all(), 'types' => Type::all()]);
+        return view('admin.updateproduct', ['product' => $product, 'categories' => Category::all(), 'types' => Type::all(), 'brands' => Brand::all()]);
     }
 
     public function update(ProductRequest $request, Product $product, Image $image){
 
         $product->update([
-            'brand' => $request->brand,
+            'brand_id' => $request->brand_id,
             'model' => $request->model,
             'description' => $request->description,
             'price' => $request->price,
@@ -93,6 +94,14 @@ class ProductController extends Controller
 
         $product->update([
             'is_active' => $request->is_active
+        ]);
+        return redirect()->route('product.indexAdmin');
+    }
+
+    public function featured(Request $request, Product $product){
+
+        $product->update([
+            'featured' => $request->featured
         ]);
         return redirect()->route('product.indexAdmin');
     }

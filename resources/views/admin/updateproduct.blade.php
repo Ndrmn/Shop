@@ -252,7 +252,11 @@
                                     @method('patch')
                                     <div class="mb-3">
                                         <label class="form-label">Brand</label>
-                                        <input type="text" name="brand" class="form-control" placeholder="Brand" minlength="3" maxlength="100" required value="{{old('brand') ? old('brand') : $product->brand}}">
+                                        <select class="form-select" name="brand_id" required>
+                                            @foreach($brands as $brand)
+                                                <option value="{{$brand->id}}" {{ "$brand->id" == old('brand_id') ? 'selected' : '' }}>{{$brand->title}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Model</label>
