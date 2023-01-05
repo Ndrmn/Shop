@@ -31,59 +31,39 @@
                                         <div class="product-categories">
                                             <h6 class="text-uppercase mb-3">Categories</h6>
                                             <ul class="list-unstyled mb-0 categories-list">
+                                                @foreach($categories as $category)
                                                 <li>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Men">
-                                                        <label class="form-check-label" for="Medium">Men</label>
+                                                        <input class="form-check-input" type="checkbox" value="" name="{{$category->id}}" id="Men">
+                                                        <label class="form-check-label" for="Medium">{{$category->title}}</label>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Women">
-                                                        <label class="form-check-label" for="Large">Women</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Kids">
-                                                        <label class="form-check-label" for="ExtraLarge">Kids</label>
-                                                    </div>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                         <hr>
-                                        <div class="price-range">
-                                            <h6 class="text-uppercase mb-3">Price</h6>
-                                            <div class="my-4" id="slider"></div>
-                                            <div class="d-flex align-items-center">
-                                                <button type="button" class="btn btn-dark btn-sm text-uppercase rounded-0 font-13 fw-500">Filter</button>
-                                                <div class="ms-auto">
-                                                    <p class="mb-0">Price: $200.00 - $900.00</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
+{{--                                        <div class="price-range">--}}
+{{--                                            <h6 class="text-uppercase mb-3">Price</h6>--}}
+{{--                                            <div class="my-4" id="slider"></div>--}}
+{{--                                            <div class="d-flex align-items-center">--}}
+{{--                                                <button type="button" class="btn btn-dark btn-sm text-uppercase rounded-0 font-13 fw-500">Filter</button>--}}
+{{--                                                <div class="ms-auto">--}}
+{{--                                                    <p class="mb-0">Price: $200.00 - $900.00</p>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <hr>--}}
                                         <div class="size-range">
                                             <h6 class="text-uppercase mb-3">Type</h6>
                                             <ul class="list-unstyled mb-0 categories-list">
+                                                @foreach($types as $type)
                                                 <li>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Classic">
-                                                        <label class="form-check-label" for="Small">Classic</label>
+                                                        <input class="form-check-input" type="checkbox" value="" name="{{$type->id}}" id="Classic">
+                                                        <label class="form-check-label" for="Small">{{$type->title}}</label>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Digital">
-                                                        <label class="form-check-label" for="Medium">Digital</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="Smart">
-                                                        <label class="form-check-label" for="Large">Smart</label>
-                                                    </div>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                         <hr>

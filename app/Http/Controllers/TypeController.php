@@ -11,7 +11,7 @@ class TypeController extends Controller
     public function store(TypeRequest $request) {
 
         Type::firstOrCreate([
-            'title' => $request->title
+            'title' => $request->title1
         ]);
 
         return redirect()->route('category.index');
@@ -20,7 +20,7 @@ class TypeController extends Controller
     public function update(TypeRequest $request, Type $type){
 
         $type->update([
-            'title' => $request->title
+            'title' => $request->title1
         ]);
 
         return redirect()->route('category.index');

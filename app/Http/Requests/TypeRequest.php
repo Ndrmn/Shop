@@ -24,7 +24,7 @@ class TypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:25|unique:types'
+            'title1' => 'required|min:3|max:25|unique:types,title'
         ];
     }
 }

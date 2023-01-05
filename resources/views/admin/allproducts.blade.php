@@ -299,7 +299,7 @@
                                             <td>{{$product->description}}</td>
                                             <td>
                                                 @foreach($product->images as $image)
-                                                    <img src="{{asset('/storage/' . $image->url)}}" width="32" height="32" class="rounded my-n1" alt="image">
+                                                    <img src="{{asset('/storage/' . $image->url)}}" width="32" height="32" class="rounded my-n1 d-block mb-1" alt="image">
                                                 @endforeach
 {{--                                                <img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">--}}
                                             </td>

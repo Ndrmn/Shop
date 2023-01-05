@@ -98,6 +98,10 @@ Route::post('/admin/types', [App\Http\Controllers\TypeController::class, 'store'
 Route::patch('/admin/types/{type}', [App\Http\Controllers\TypeController::class, 'update'])->name('type.update');
 Route::delete('/admin/types/{type}/destroy', [App\Http\Controllers\TypeController::class, 'destroy'])->name('type.delete');
 
+Route::post('/admin/brands', [App\Http\Controllers\BrandController::class, 'store'])->name('brand.store');
+Route::patch('/admin/brands/{brand}', [App\Http\Controllers\BrandController::class, 'update'])->name('brand.update');
+Route::delete('/admin/brands/{brand}/destroy', [App\Http\Controllers\BrandController::class, 'destroy'])->name('brand.delete');
+
 
 Route::get('/admin/transactions', function () {
     return view('admin/transactions');

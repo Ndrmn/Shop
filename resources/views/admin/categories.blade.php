@@ -308,7 +308,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Add new type:</label>
-                                        <input type="text" value="{{old('title')}}" name="title" id="title" class="form-control" placeholder="Type" required minlength="3" maxlength="25">
+                                        <input type="text" value="{{old('title1')}}" name="title1" id="title" class="form-control" placeholder="Type" required minlength="3" maxlength="25">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Add</button>
                                 </form>
@@ -334,7 +334,7 @@
                                             <form action="{{route('category.update', $type->id)}}" method="post" class="d-flex">
                                                 @csrf
                                                 @method(('patch'))
-                                                <input type="text" class="form-control" name="title" id="title" value="{{$type->title}}">
+                                                <input type="text" class="form-control" name="title1" id="title" value="{{$type->title}}">
                                                 <button type="submit" class="btn btn-success ms-1">Save</button>
                                             </form>
                                         </td>
@@ -353,7 +353,60 @@
                             </table>
                         </div>
                     </div>
-
+                </div>
+                <div class="row">
+                    <div class="col-12 col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="{{route('brand.store')}}" method="post">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label class="form-label">Add new brand:</label>
+                                        <input type="text" value="{{old('title2')}}" name="title2" id="title" class="form-control" placeholder="Brand" required minlength="1" maxlength="50">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Brands</h5>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th style="width:90%;">Title</th>
+                                    <th style="width:10%;">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($brands as $brand)
+                                    <tr>
+                                        <td class="hiddenElem">
+                                            <form action="{{route('category.update', $brand->id)}}" method="post" class="d-flex">
+                                                @csrf
+                                                @method(('patch'))
+                                                <input type="text" class="form-control" name="title2" id="title" value="{{$brand->title}}">
+                                                <button type="submit" class="btn btn-success ms-1">Save</button>
+                                            </form>
+                                        </td>
+                                        <td>{{$brand->title}}</td>
+                                        <td class="table-action">
+                                            <i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i>
+                                            <form style="display: inline-flex" action="{{ route('type.delete', $brand->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button style="padding:0px" class="btn btn-outline-white" type="submit" value="Delete"><i class="align-middle fas fa-fw fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
