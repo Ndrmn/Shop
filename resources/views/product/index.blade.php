@@ -139,7 +139,8 @@
                                                             </div>
                                                             <div class="product-action mt-2">
                                                                 <div class="d-flex gap-2">
-                                                                    <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="/products/{{$product->id}}" class="btn btn-light btn-ecomm"><i class="bx bx-zoom-in"></i>Details</a>
+                                                                    <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                                                    <a href="/products/{{$product->id}}" class="btn btn-light btn-ecomm"><i class="bx bx-zoom-in"></i>Details</a>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -256,151 +256,38 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Company</th>
+                                        <th>Surname</th>
                                         <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Created at</th>
+                                        <th>Updated at</th>
+                                        <th>Verified at</th>
+                                        <th>Pass hash</th>
+                                        <th>Avatar</th>
+                                        <th>Actions</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Garrett Winters</td>
-                                        <td>Good Guys</td>
-                                        <td>garrett@winters.com</td>
+                                        <td>{{$user->id}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->surname}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->phone}}</td>
+                                        <td>{{$user->created_at}}</td>
+                                        <td>{{$user->updated_at}}</td>
+                                        <td>{{$user->verified_at}}</td>
+                                        <td>{{$user->password}}</td>
+                                        <td>
+                                            @if($user->avatar <> "")
+                                                <img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">
+                                            @else
+                                                <img src="{{asset('assets/images/default-avatar.svg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">
+                                            @endif
+                                        </td>
                                         <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Ashton Cox</td>
-                                        <td>Levitz Furniture</td>
-                                        <td>ashton@cox.com</td>
                                         <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Sonya Frost</td>
-                                        <td>Child World</td>
-                                        <td>sonya@frost.com</td>
-                                        <td><span class="badge bg-danger">Deleted</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Jena Gaines</td>
-                                        <td>Helping Hand</td>
-                                        <td>jena@gaines.com</td>
-                                        <td><span class="badge bg-warning">Inactive</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Quinn Flynn</td>
-                                        <td>Good Guys</td>
-                                        <td>quinn@flynn.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Charde Marshall</td>
-                                        <td>Price Savers</td>
-                                        <td>charde@marshall.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-2.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Haley Kennedy</td>
-                                        <td>Helping Hand</td>
-                                        <td>haley@kennedy.com</td>
-                                        <td><span class="badge bg-danger">Deleted</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-2.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Tatyana Fitzpatrick</td>
-                                        <td>Good Guys</td>
-                                        <td>tatyana@fitzpatrick.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-3.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Michael Silva</td>
-                                        <td>Red Robin Stores</td>
-                                        <td>michael@silva.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-3.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Yuri Berry</td>
-                                        <td>The Wiz</td>
-                                        <td>yuri@berry.com</td>
-                                        <td><span class="badge bg-danger">Deleted</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-3.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Doris Wilder</td>
-                                        <td>Red Robin Stores</td>
-                                        <td>doris@wilder.com</td>
-                                        <td><span class="badge bg-warning">Inactive</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-3.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Angelica Ramos</td>
-                                        <td>The Wiz</td>
-                                        <td>angelica@ramos.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-4.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Jennifer Chang</td>
-                                        <td>Helping Hand</td>
-                                        <td>jennifer@chang.com</td>
-                                        <td><span class="badge bg-warning">Inactive</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-4.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Brenden Wagner</td>
-                                        <td>The Wiz</td>
-                                        <td>brenden@wagner.com</td>
-                                        <td><span class="badge bg-warning">Inactive</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-4.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Fiona Green</td>
-                                        <td>The Sample</td>
-                                        <td>fiona@green.com</td>
-                                        <td><span class="badge bg-warning">Inactive</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-4.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Suki Burks</td>
-                                        <td>The Sample</td>
-                                        <td>suki@burks.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-5.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Prescott Bartlett</td>
-                                        <td>The Sample</td>
-                                        <td>prescott@bartlett.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-5.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Gavin Cortez</td>
-                                        <td>Red Robin Stores</td>
-                                        <td>gavin@cortez.com</td>
-                                        <td><span class="badge bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-5.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Unity Butler</td>
-                                        <td>Price Savers</td>
-                                        <td>unity@butler.com</td>
-                                        <td><span class="badge bg-warning">Inactive</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="{{asset('assets/img/avatars/avatar-5.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
-                                        <td>Howard Hatfield</td>
-                                        <td>Price Savers</td>
-                                        <td>howard@hatfield.com</td>
-                                        <td><span class="badge bg-warning">Inactive</span></td>
                                     </tr>
                                     </tbody>
                                 </table>

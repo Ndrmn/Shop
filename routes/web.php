@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home/home');
-});
-
 Route::get('/cart', function () {
     return view('cart/cart');
 });
@@ -76,6 +72,8 @@ Route::get('/admin/users', function () {
 Route::get('/admin/products/all', function () {
     return view('admin/allproducts');
 });
+
+Route::get('/', [App\Http\Controllers\ProductController::class, 'index_featured'])->name('product.featured');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
 Route::get('/products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
 

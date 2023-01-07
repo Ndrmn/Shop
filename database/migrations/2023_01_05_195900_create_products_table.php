@@ -23,11 +23,20 @@ return new class extends Migration
             $table->softDeletes();
             $table->text('description');
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->on('categories')->references('id');
             $table->unsignedBigInteger('type_id')->nullable();
-            $table->foreign('type_id')->on('types')->references('id');
             $table->unsignedBigInteger('brand_id')->nullable();
-            $table->foreign('brand_id')->on('brands')->references('id');
+            $table->foreign('category_id')->
+            references('id')->
+            on('categories')->
+            onDelete('cascade');
+            $table->foreign('type_id')->
+            references('id')->
+            on('types')->
+            onDelete('cascade');
+            $table->foreign('brand_id')->
+                references('id')->
+                on('brands')->
+                onDelete('cascade');
         });
     }
 

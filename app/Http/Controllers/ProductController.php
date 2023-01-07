@@ -24,6 +24,12 @@ class ProductController extends Controller
 
     }
 
+    public function index_featured() {
+
+        return view('home.home', ['products' => Product::with('images')->where('is_active', 1)->where('featured', 1)->get()]);
+
+    }
+
     public function show(Product $product) {
 
 
