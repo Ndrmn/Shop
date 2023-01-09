@@ -54,7 +54,6 @@
                     <ul id="datatables" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                         <li class="sidebar-item active"><a class="sidebar-link" href="{{asset('admin/products/all')}}">All products</a></li>
                         <li class="sidebar-item"><a class="sidebar-link" href="{{asset('admin/products/add')}}">Add new</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-column-search.html">Featured</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
@@ -314,10 +313,10 @@
                                                 <a href="{{asset('admin/products/' . $product->id . '/edit')}}"><i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i></a>
 {{--                                                <i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i>--}}
                                                     @if($product->is_active == 1)
-                                                    <form action="{{ route('product.active', $product->id) }}" method="post">
-                                                        @csrf
-                                                        @method('patch')
-                                                        <input type="text" style="display: none" name="is_active" value="0">
+                                                        <form action="{{ route('product.active', $product->id) }}" method="post">
+                                                            @csrf
+                                                            @method('patch')
+                                                            <input type="text" style="display: none" name="is_active" value="0">
                                                         <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-arrow-down"></i></button>
                                                     </form>
                                                     @endif
@@ -326,25 +325,25 @@
                                                             @csrf
                                                             @method('patch')
                                                             <input type="text" style="display: none" name="is_active" value="1">
+                                                            <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-arrow-up"></i></button>
+                                                        </form>
+                                                    @endif
+                                                    @if($product->featured == 0)
+                                                        <form action="{{ route('product.featured', $product->id) }}" method="post">
+                                                            @csrf
+                                                            @method('patch')
+                                                            <input type="text" style="display: none" name="featured" value="1">
                                                             <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-plus"></i></button>
                                                         </form>
                                                     @endif
-                                                @if($product->featured == 0)
-                                                    <form action="{{ route('product.featured', $product->id) }}" method="post">
-                                                        @csrf
-                                                        @method('patch')
-                                                        <input type="text" style="display: none" name="featured" value="1">
-                                                        <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-minus"></i></button>
-                                                    </form>
-                                                @endif
-                                                @if($product->featured == 1)
-                                                    <form action="{{ route('product.featured', $product->id) }}" method="post">
-                                                        @csrf
-                                                        @method('patch')
-                                                        <input type="text" style="display: none" name="is_active" value="0">
-                                                        <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-arrow-up"></i></button>
-                                                    </form>
-                                                @endif
+                                                    @if($product->featured == 1)
+                                                        <form action="{{ route('product.featured', $product->id) }}" method="post">
+                                                            @csrf
+                                                            @method('patch')
+                                                            <input type="text" style="display: none" name="featured" value="0">
+                                                            <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-minus"></i></button>
+                                                        </form>
+                                                    @endif
                                                 <form action="{{ route('product.delete', $product->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')

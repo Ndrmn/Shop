@@ -26,14 +26,14 @@ class ProductController extends Controller
 
     public function index_featured() {
 
-        return view('home.home', ['products' => Product::with('images')->where('is_active', 1)->where('featured', 1)->get()]);
+        return view('home.home', ['products' => Product::with('images')->where('is_active', 1)->where('featured', 1)->get(), 'brands' => Brand::all()]);
 
     }
 
     public function show(Product $product) {
 
 
-        return view('product.show', ['product' => $product, 'images' => Image::where('product_id', $product->id)->get()]);
+        return view('product.show', ['product' => $product, 'images' => Image::where('product_id', $product->id)->get(), 'brands' => Brand::all()]);
     }
 
 

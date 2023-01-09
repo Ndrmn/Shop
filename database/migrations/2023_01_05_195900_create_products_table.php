@@ -34,9 +34,9 @@ return new class extends Migration
             on('types')->
             onDelete('cascade');
             $table->foreign('brand_id')->
-                references('id')->
-                on('brands')->
-                onDelete('cascade');
+            references('id')->
+            on('brands')->
+            onDelete('cascade');
         });
     }
 

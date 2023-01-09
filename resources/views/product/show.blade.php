@@ -9,7 +9,13 @@
             <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
                 <div class="container">
                     <div class="page-breadcrumb d-flex align-items-center">
-                        <h3 class="breadcrumb-title pe-3">{{$product->brand . ' ' . $product->model}}</h3>
+                        <h3 class="breadcrumb-title pe-3">
+                            @foreach($brands as $brand)
+                                @if($brand->id == $product->brand_id)
+                                    {{$brand->title}}
+                                @endif
+                            @endforeach
+                        {{"" . $product->model}}</h3>
                     </div>
                 </div>
             </section>
@@ -40,7 +46,13 @@
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="product-info-section p-3">
-                                        <h3 class="mt-3 mt-lg-0 mb-0">{{$product->brand . ' ' . $product->model}}</h3>
+                                        <h3 class="mt-3 mt-lg-0 mb-0">
+                                            @foreach($brands as $brand)
+                                                @if($brand->id == $product->brand_id)
+                                                    {{$brand->title}}
+                                                @endif
+                                            @endforeach
+                                            {{"" . $product->model}}</h3>
                                         <div class="d-flex align-items-center mt-3 gap-2">
                                             <h4 class="mb-0">${{$product->price}}</h4>
                                         </div>

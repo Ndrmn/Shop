@@ -27,6 +27,8 @@ services:
       args:
         HOST_UID: '${HOST_UID}'
     restart: always
+    ports:
+        - "3306:3306"
     volumes:
       - './data/volumes/db:/var/lib/mysql'
     environment:

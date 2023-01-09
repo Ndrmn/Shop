@@ -129,7 +129,13 @@
                                                     <div class="card-body">
                                                         <div class="product-info">
                                                             <a href="javascript:;">
-                                                                <h6 class="product-name mb-2">{{$product->brand . ' ' . $product->model}}</h6>
+                                                                <h6 class="product-name mb-2">
+                                                                    @foreach($brands as $brand)
+                                                                        @if($brand->id == $product->brand_id)
+                                                                            {{$brand->title}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                    {{" " . $product->model}}</h6>
                                                             </a>
                                                             <p class="card-text me-5">{{$product->description}}</p>
                                                             <div class="d-flex align-items-center">

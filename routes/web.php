@@ -73,7 +73,7 @@ Route::get('/admin/products/all', function () {
     return view('admin/allproducts');
 });
 
-Route::get('/', [App\Http\Controllers\ProductController::class, 'index_featured'])->name('product.featured');
+Route::get('/', [App\Http\Controllers\ProductController::class, 'index_featured'])->name('product.index_featured');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
 Route::get('/products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
 
@@ -82,9 +82,9 @@ Route::get('/admin/products/all', [App\Http\Controllers\ProductController::class
 Route::get('/admin/products/add', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
 Route::post('/admin/products/add', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
 Route::get('/admin/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
-Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
-Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'active'])->name('product.active');
-Route::patch('/admin/products/{product}', [App\Http\Controllers\ProductController::class, 'featured'])->name('product.featured');
+Route::patch('/admin/products/{product}/update', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+Route::patch('/admin/products/{product}/active', [App\Http\Controllers\ProductController::class, 'active'])->name('product.active');
+Route::patch('/admin/products/{product}/featured', [App\Http\Controllers\ProductController::class, 'featured'])->name('product.featured');
 Route::delete('/admin/products/{product}/destroy', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
 
 
@@ -114,9 +114,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function () {
-    Route::get('login', 'Auth\AdminLoginController@login')->name('admin.auth.login');
-        Route::post('login', 'Auth\AdminLoginController@loginAdmin')->name('admin.auth.loginAdmin');
-        Route::post('logout', 'Auth\AdminLoginController@logout')->name('admin.auth.logout');
+    Route::get('login', 'App\Http\Controllers\Auth\AdminLoginController@login')->name('admin.auth.login');
+        Route::post('login', 'App\Http\Controllers\Auth\AdminLoginController@loginAdmin')->name('admin.auth.loginAdmin');
+        Route::post('logout', 'App\Http\Controllers\Auth\AdminLoginController@logout')->name('admin.auth.logout');
     });
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('admin/', function () {
