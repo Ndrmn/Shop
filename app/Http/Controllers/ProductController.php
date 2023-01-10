@@ -148,7 +148,7 @@ class ProductController extends Controller
 
 
 
-        $products = $query->where('is_active', 1)->get();
+        $products = $query->where('is_active', 1)->paginate(5);
 
         return view('product.index', [
             'products' => $products,
