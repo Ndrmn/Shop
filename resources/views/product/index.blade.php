@@ -27,87 +27,102 @@
                                             <h6 class="text-uppercase mb-0">Filter</h6>
                                             <div class="btn-mobile-filter-close btn-close ms-auto cursor-pointer"></div>
                                         </div>
-                                        <hr class="d-flex d-xl-none" />
-                                        <div class="product-categories">
-                                            <h6 class="text-uppercase mb-3">Categories</h6>
-                                            <ul class="list-unstyled mb-0 categories-list">
-                                                @foreach($categories as $category)
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" name="{{$category->id}}" id="Men">
-                                                        <label class="form-check-label" for="Medium">{{$category->title}}</label>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        <hr>
-{{--                                        <div class="price-range">--}}
-{{--                                            <h6 class="text-uppercase mb-3">Price</h6>--}}
-{{--                                            <div class="my-4" id="slider"></div>--}}
-{{--                                            <div class="d-flex align-items-center">--}}
-{{--                                                <button type="button" class="btn btn-dark btn-sm text-uppercase rounded-0 font-13 fw-500">Filter</button>--}}
-{{--                                                <div class="ms-auto">--}}
-{{--                                                    <p class="mb-0">Price: $200.00 - $900.00</p>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <hr>--}}
-                                        <div class="size-range">
-                                            <h6 class="text-uppercase mb-3">Type</h6>
-                                            <ul class="list-unstyled mb-0 categories-list">
-                                                @foreach($types as $type)
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" name="{{$type->id}}" id="Classic">
-                                                        <label class="form-check-label" for="Small">{{$type->title}}</label>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        <hr>
-                                        <div class="product-brands">
-                                            <h6 class="text-uppercase mb-3">Brands</h6>
-                                            <ul class="list-unstyled mb-0 categories-list">
-                                                @foreach($brands as $brand)
-                                                <li>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" name="{{$brand->id}}" id="Brand">
-                                                        <label class="form-check-label" for="Adidas">{{$brand->title}}</label>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
+                                        <form action="{{route('product.index')}}" method="get">
+{{--                                            @csrf--}}
+                                            <hr class="d-flex d-xl-none" />
+                                            <div class="product-categories">
+                                                <h6 class="text-uppercase mb-3">Categories</h6>
+                                                <ul class="list-unstyled mb-0 categories-list">
+                                                    @foreach($categories as $category)
+                                                    <li>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{$category->id}}" name="categories[]"
+                                                            @if($checked_boxes->categories)
+                                                                @foreach($checked_boxes->categories as $cat)
+                                                                    @if($cat == $category->id)
+                                                                        checked
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif>
+                                                            <label class="form-check-label">{{$category->title}}</label>
+                                                        </div>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <hr>
+                                            <div class="size-range">
+                                                <h6 class="text-uppercase mb-3">Type</h6>
+                                                <ul class="list-unstyled mb-0 categories-list">
+                                                    @foreach($types as $type)
+                                                    <li>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{$type->id}}" name="types[]"
+                                                                   @if($checked_boxes->types)
+                                                                       @foreach($checked_boxes->types as $typ)
+                                                                           @if($typ == $type->id)
+                                                                               checked
+                                                                           @endif
+                                                                       @endforeach
+                                                                    @endif>
+                                                            <label class="form-check-label">{{$type->title}}</label>
+                                                        </div>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <hr>
+                                            <div class="product-brands">
+                                                <h6 class="text-uppercase mb-3">Brands</h6>
+                                                <ul class="list-unstyled mb-0 categories-list">
+                                                    @foreach($brands as $brand)
+                                                    <li>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="{{$brand->id}}" name="brands[]"
+                                                                   @if($checked_boxes->brands)
+                                                                       @foreach($checked_boxes->brands as $bra)
+                                                                           @if($bra == $brand->id)
+                                                                               checked
+                                                                           @endif
+                                                                       @endforeach
+                                                                   @endif>
+                                                            <label class="form-check-label">{{$brand->title}}</label>
+                                                        </div>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <hr>
+                                            <button type="submit" class="btn btn-dark btn-ecomm">Filter</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-xl-9">
                             <div class="product-wrapper">
-                                <div class="toolbox d-flex align-items-center mb-3 gap-2">
-                                    <div class="d-flex flex-wrap flex-grow-1 gap-1">
-                                        <div class="d-flex align-items-center flex-nowrap">
-                                            <p class="mb-0 font-13 text-nowrap">Sort By:</p>
-                                            <select class="form-select ms-3 rounded-0">
-                                                <option value="menu_order" selected="selected">Default sorting</option>
-                                                <option value="price">Sort by price: low to high</option>
-                                                <option value="price-desc">Sort by price: high to low</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-wrap">
-                                        <div class="d-flex align-items-center flex-nowrap">
-                                            <p class="mb-0 font-13 text-nowrap">Show:</p>
-                                            <select class="form-select ms-3 rounded-0">
-                                                <option>10</option>
-                                                <option>20</option>
-                                                <option>50</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="toolbox d-flex align-items-center mb-3 gap-2">--}}
+{{--                                    <div class="d-flex flex-wrap flex-grow-1 gap-1">--}}
+{{--                                        <div class="d-flex align-items-center flex-nowrap">--}}
+{{--                                            <p class="mb-0 font-13 text-nowrap">Sort By:</p>--}}
+{{--                                            <select class="form-select ms-3 rounded-0">--}}
+{{--                                                <option value="menu_order" selected="selected">Default sorting</option>--}}
+{{--                                                <option value="price">Sort by price: low to high</option>--}}
+{{--                                                <option value="price-desc">Sort by price: high to low</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="d-flex flex-wrap">--}}
+{{--                                        <div class="d-flex align-items-center flex-nowrap">--}}
+{{--                                            <p class="mb-0 font-13 text-nowrap">Show:</p>--}}
+{{--                                            <select class="form-select ms-3 rounded-0">--}}
+{{--                                                <option>10</option>--}}
+{{--                                                <option>20</option>--}}
+{{--                                                <option>50</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="product-grid">
                                     @foreach($products as $product)
                                         <div class="card rounded-0 product-card">

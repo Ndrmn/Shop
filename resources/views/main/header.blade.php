@@ -164,7 +164,7 @@
                 <!--end row-->
             </div>
         </div>
-        <div class="primary-menu border-top">
+        <div class="primary-menu">
             <div class="container">
                 <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg">
                     <div class="offcanvas-header">
@@ -174,30 +174,9 @@
                     <ul class="navbar-nav">
                         <li class="nav-item active"> <a class="nav-link" href="/">Home </a>
                         </li>
-                        <li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="/products" data-bs-toggle="dropdown">Categories  <i class='bx bx-chevron-down'></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/products">All</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/">For men</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/">For women</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/">For kids</a>
-                            </ul>
+                        <li class="nav-item"> <a class="nav-link" href="/products">Products</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="/">About Us </a>
-                        </li>
-                        <li class="nav-item"> <a class="nav-link" href="/">Contact Us </a>
-                        </li>
-                        <li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">My Account  <i class='bx bx-chevron-down'></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/">Orders</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/">Favorites</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/">User Details</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item"> <a class="nav-link" href="/">My Account</a>
                         </li>
                     </ul>
                 </nav>

@@ -18,11 +18,11 @@ class ProductController extends Controller
 
     }
 
-    public function index() {
-
-        return view('product.index', ['products' => Product::with('images')->where('is_active', 1)->get(), 'categories' => Category::all(), 'types' => Type::all(), 'brands' => Brand::all()]);
-
-    }
+//    public function index() {
+//
+//        return view('product.index', ['products' => Product::with('images')->where('is_active', 1)->get(), 'categories' => Category::all(), 'types' => Type::all(), 'brands' => Brand::all()]);
+//
+//    }
 
     public function index_featured() {
 
@@ -120,5 +120,41 @@ class ProductController extends Controller
         $product -> delete();
 
         return redirect()->route('product.indexAdmin');
+    }
+
+    public function index(Request $request) {
+
+//        dd($request->all());
+
+        $query = Product::query()->with('images');
+
+        if (isset($request->categories)) {
+
+            $query->whereIn('category_id', $request->categories);
+
+        }
+
+        if (isset($request->types)) {
+
+                $query->where('type_id', $request->types);
+        }
+
+        if (isset($request->brands)) {
+
+            foreach ($request->brands as $brand) {
+                $query->where('brand_id', $request->brands);
+            }
+        }
+
+
+
+        $products = $query->where('is_active', 1)->get();
+
+        return view('product.index', [
+            'products' => $products,
+            'categories' => Category::all(),
+            'types' => Type::all(),
+            'brands' => Brand::all(),
+            'checked_boxes' => $request]);
     }
 }

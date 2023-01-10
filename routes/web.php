@@ -17,14 +17,6 @@ Route::get('/cart', function () {
     return view('cart/cart');
 });
 
-Route::get('/products/1', function () {
-    return view('product/show');
-});
-
-Route::get('/products', function () {
-    return view('product/index');
-});
-
 Route::get('/wishlist', function () {
     return view('wishlist/index');
 });
@@ -69,13 +61,13 @@ Route::get('/admin/users', function () {
     return view('admin/users');
 });
 
-Route::get('/admin/products/all', function () {
-    return view('admin/allproducts');
-});
+
 
 Route::get('/', [App\Http\Controllers\ProductController::class, 'index_featured'])->name('product.index_featured');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
 Route::get('/products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
+//Route::get('/products', [App\Http\Controllers\ProductController::class, 'filter'])->name('product.filter');
+
 
 
 Route::get('/admin/products/all', [App\Http\Controllers\ProductController::class, 'indexAdmin'])->name('product.indexAdmin');
