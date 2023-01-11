@@ -14,7 +14,7 @@ class TypeController extends Controller
             'title' => $request->title1
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 
     public function update(TypeRequest $request, Type $type){
@@ -23,13 +23,13 @@ class TypeController extends Controller
             'title' => $request->title1
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 
     public function destroy(Type $type) {
 
         $type -> delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 }

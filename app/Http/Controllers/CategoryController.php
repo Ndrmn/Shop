@@ -10,17 +10,13 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index() {
-        return view('admin.categories', ['categories' => Category::all(), 'types' => Type::all(), 'brands' => Brand::all()]);
-    }
-
     public function store(CategoryRequest $request) {
 
         Category::firstOrCreate([
             'title' => $request->title
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 
     public function update(CategoryRequest $request, Category $category){
@@ -29,13 +25,13 @@ class CategoryController extends Controller
             'title' => $request->title
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 
     public function destroy(Category $category) {
 
         $category -> delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 }

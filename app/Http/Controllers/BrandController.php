@@ -14,7 +14,7 @@ class BrandController extends Controller
             'title' => $request->title2
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 
     public function update(BrandRequest $request, Brand $brand){
@@ -23,13 +23,13 @@ class BrandController extends Controller
             'title' => $request->title2
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 
     public function destroy(Brand $brand) {
 
         $brand -> delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('characteristics.index');
     }
 }
