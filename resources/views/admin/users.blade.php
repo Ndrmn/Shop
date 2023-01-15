@@ -123,7 +123,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Surname</th>
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Created at</th>
@@ -136,26 +135,56 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-{{--                                    <tr>--}}
-{{--                                        <td>{{$user->id}}</td>--}}
-{{--                                        <td>{{$user->name}}</td>--}}
-{{--                                        <td>{{$user->surname}}</td>--}}
-{{--                                        <td>{{$user->email}}</td>--}}
-{{--                                        <td>{{$user->phone}}</td>--}}
-{{--                                        <td>{{$user->created_at}}</td>--}}
-{{--                                        <td>{{$user->updated_at}}</td>--}}
-{{--                                        <td>{{$user->verified_at}}</td>--}}
-{{--                                        <td>{{$user->password}}</td>--}}
-{{--                                        <td>--}}
-{{--                                            @if($user->avatar <> "")--}}
-{{--                                                <img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">--}}
-{{--                                            @else--}}
-{{--                                                <img src="{{asset('assets/images/default-avatar.svg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">--}}
-{{--                                            @endif--}}
-{{--                                        </td>--}}
-{{--                                        <td><span class="badge bg-success">Active</span></td>--}}
-{{--                                        <td><span class="badge bg-success">Active</span></td>--}}
-{{--                                    </tr>--}}
+                                    @foreach($users as $user)
+                                    <tr>
+                                        <td>{{$user->id}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->phone}}</td>
+                                        <td>{{$user->created_at}}</td>
+                                        <td>{{$user->updated_at}}</td>
+                                        <td>{{$user->email_verified_at}}</td>
+                                        <td>{{$user->password}}</td>
+                                        <td>
+                                            <img src="{{asset('/storage/' . $user->avatar)}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">
+                                        </td>
+                                        <td>
+
+                                            <a href="{{asset('admin/users/' . $user->id . '/edit')}}"><i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i></a>
+
+                                            @if($user->is_active == 1)
+                                                <form action="{{ route('admin.user.active', $user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <input type="text" style="display: none" name="is_active" value="0">
+                                                    <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-x"></i></button>
+                                                </form>
+                                            @endif
+                                            @if($user->is_active == 0)
+                                                <form action="{{ route('admin.user.active', $user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <input type="text" style="display: none" name="is_active" value="1">
+                                                    <button style="padding:0px;" class="btn btn-outline-white" type="submit"><i class="align-middle fas fa-fw fa-plus"></i></button>
+                                                </form>
+                                            @endif
+
+                                            <form action="{{ route('admin.user.delete', $user->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button style="padding:0px;" class="btn btn-outline-white" type="submit" value="Delete"><i class="align-middle fas fa-fw fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            @if($user->is_active == 1)
+                                                <span class="badge bg-success">Active</span>
+                                            @endif
+                                            @if($user->is_active == 0)
+                                                <span class="badge bg-danger">Blocked</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

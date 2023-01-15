@@ -14,24 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/cart', function () {
-    return view('cart/cart');
-});
-
 Route::get('/wishlist', function () {
     return view('wishlist/index');
-});
-
-Route::get('/user/1/personal', function () {
-    return view('user/personal');
-});
-
-Route::get('/user/1/orders', function () {
-    return view('user/orders');
-});
-
-Route::get('/user/1/wishlist', function () {
-    return view('user/wishlist');
 });
 
 Route::get('/signup', function () {
@@ -83,24 +67,51 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/admin/characteristics', [App\Http\Controllers\CharacteristicsController::class, 'index'])->name('characteristics.index');
 
     Route::post('/admin/categories', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
-    Route::patch('/admin/categories/{category}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+    Route::patch('/admin/categories/{category}/update', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
     Route::delete('/admin/categories/{category}/destroy', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
 
     Route::post('/admin/types', [App\Http\Controllers\TypeController::class, 'store'])->name('type.store');
-    Route::patch('/admin/types/{type}', [App\Http\Controllers\TypeController::class, 'update'])->name('type.update');
+    Route::patch('/admin/types/{type}/update', [App\Http\Controllers\TypeController::class, 'update'])->name('type.update');
     Route::delete('/admin/types/{type}/destroy', [App\Http\Controllers\TypeController::class, 'destroy'])->name('type.delete');
 
     Route::post('/admin/brands', [App\Http\Controllers\BrandController::class, 'store'])->name('brand.store');
-    Route::patch('/admin/brands/{brand}', [App\Http\Controllers\BrandController::class, 'update'])->name('brand.update');
+    Route::patch('/admin/brands/{brand}/update', [App\Http\Controllers\BrandController::class, 'update'])->name('brand.update');
     Route::delete('/admin/brands/{brand}/destroy', [App\Http\Controllers\BrandController::class, 'destroy'])->name('brand.delete');
 
+    Route::get('/admin/dashboard', [App\Http\Controllers\AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/admin/users', [App\Http\Controllers\UserController::class, 'index'])->name('admin.user.index');
+    Route::patch('/admin/users/{user}/active', [App\Http\Controllers\UserController::class, 'active'])->name('admin.user.active');
+    Route::get('/admin/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('admin.user.edit');
+    Route::patch('/admin/users/{user}/update', [App\Http\Controllers\UserController::class, 'adminUpdate'])->name('admin.user.update');
+
+    Route::delete('/admin/users/{user}/destroy', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.user.delete');
 
     Route::get('/admin/transactions', function () {
         return view('admin/transactions');
     });
+});
 
-    Route::get('/admin/dashboard', [App\Http\Controllers\AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/admin/users', [App\Http\Controllers\UserController::class, 'index'])->name('admin.users');
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/user/{user}/personal', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+
+    Route::get('/user/{user}/wishlist', [App\Http\Controllers\FavoriteController::class, 'wishlistAuth'])->name('user.wishlist');
+
+    Route::post('/wishlist/{product}', [App\Http\Controllers\FavoriteController::class, 'store'])->name('user.wishlist.store');
+
+    Route::delete('/wishlist/{product}/delete', [App\Http\Controllers\FavoriteController::class, 'delete'])->name('user.wishlist.delete');
+
+
+    Route::get('/user/{user}/orders', [App\Http\Controllers\UserController::class, 'orders'])->name('user.orders');
+
+    Route::get('/user/{user}/cart', [App\Http\Controllers\UserController::class, 'cart'])->name('user.cart');
+
+    Route::patch('/user/{user}/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 
 });
+
+Route::get('/wishlist', [App\Http\Controllers\FavoriteController::class, 'wishlist'])->name('wishlist');
+
+

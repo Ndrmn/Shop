@@ -63,7 +63,6 @@ class ProductController extends Controller
     }
 
     public function update(ProductRequest $request, Product $product, Image $image){
-
         $product->update([
             'brand_id' => $request->brand_id,
             'model' => $request->model,
@@ -119,8 +118,6 @@ class ProductController extends Controller
 
     public function index(Request $request) {
 
-//        dd($request->all());
-
         $query = Product::query()->with('images');
 
         if (isset($request->categories)) {
@@ -131,17 +128,13 @@ class ProductController extends Controller
 
         if (isset($request->types)) {
 
-                $query->where('type_id', $request->types);
+            $query->whereIn('type_id', $request->types);
         }
 
         if (isset($request->brands)) {
 
-            foreach ($request->brands as $brand) {
-                $query->where('brand_id', $request->brands);
-            }
+            $query->whereIn('brand_id', $request->brands);
         }
-
-
 
         $products = $query->where('is_active', 1)->paginate(5);
 

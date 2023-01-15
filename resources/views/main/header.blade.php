@@ -24,15 +24,20 @@
                         <div class="top-cart-icons float-end">
                             <nav class="navbar navbar-expand">
                                 <ul class="navbar-nav ms-auto">
-                                    <li class="nav-item"><a href="/user/1/personal" class="nav-link cart-link"><img src="{{asset('assets/images/avatars/avatar-1.png')}}" width="30" height="30" style="margin-bottom: 8px;" class="rounded-circle" alt="" /></a>
-                                    </li>
-                                    <li class="nav-item"><a href="/user/1/personal" class="nav-link cart-link"><i class='bx bx-user'></i></a>
-                                    </li>
-                                    <li class="nav-item"><a href="/wishlist" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
-                                    </li>
+                                    @guest
+                                        <li class="nav-item"><a class="nav-link cart-link" href="{{ route('login') }}"><i class='bx bx-user'></i></a>
+                                        </li>
+                                        <li class="nav-item"><a href="/wishlist" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
+                                        </li>
+                                    @else
+                                        <li class="nav-item"><a href="{{ route('user.show', Auth::user()->id) }}" class="nav-link cart-link"><img src="{{asset('/storage/' . Auth::user()->avatar)}}" width="30" height="30" style="margin-bottom: 8px;" class="rounded-circle" alt="" /></a>
+                                        </li>
+                                        <li class="nav-item"><a href="{{ route('user.wishlist', Auth::user()->id) }}" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
+                                        </li>
+                                    @endguest
                                     <li class="nav-item dropdown dropdown-large">
                                         <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown">	<span class="alert-count">8</span>
-                                            <i class='bx bx-shopping-bag'></i>
+                                            <i class='bx bx-cart-alt'></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <a href="javascript:;">
@@ -176,7 +181,7 @@
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="/products">Products</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="/">My Account</a>
+                        <li class="nav-item"> <a class="nav-link" href="{{route('user.show', Auth::user()->id)}}">My Account</a>
                         </li>
                     </ul>
                 </nav>

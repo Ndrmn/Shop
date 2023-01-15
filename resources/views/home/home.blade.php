@@ -112,10 +112,20 @@
                             <div class="card rounded-0 product-card">
                                 <div class="card-header bg-transparent border-bottom-0">
                                     <div class="d-flex align-items-center justify-content-end gap-3">
-                                        <a href="javascript:;">
-                                            <div class="product-wishlist"> <i class='bx bx-heart'></i>
-                                            </div>
-                                        </a>
+                                        <form action="{{route('user.wishlist.store', $product->id)}}" method="post">
+                                            @csrf
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <div class="product-wishlist">
+                                                    @auth()
+                                                        @if (Auth::user()->favorites->contains($product->id))
+                                                            <i class="bx bxs-heart"></i>
+                                                        @else
+                                                            <i class="bx bx-heart"></i>
+                                                        @endif
+                                                    @endauth
+                                                </div>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                                 <a href="{{asset('/products/' . $product->id )}}">

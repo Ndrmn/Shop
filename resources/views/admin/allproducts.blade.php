@@ -168,12 +168,10 @@
                                                 @foreach($product->images as $image)
                                                     <img src="{{asset('/storage/' . $image->url)}}" width="32" height="32" class="rounded my-n1 d-block mb-1" alt="image">
                                                 @endforeach
-{{--                                                <img src="{{asset('assets/img/avatars/avatar.jpg')}}" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">--}}
                                             </td>
                                             <td>$ {{$product->price}}</td>
                                             <td>
                                                 <a href="{{asset('admin/products/' . $product->id . '/edit')}}"><i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i></a>
-{{--                                                <i style="cursor: pointer" class="align-middle fas fa-fw fa-pen editBtn"></i>--}}
                                                     @if($product->is_active == 1)
                                                         <form action="{{ route('product.active', $product->id) }}" method="post">
                                                             @csrf
@@ -213,13 +211,15 @@
                                                 </form>
                                             </td>
                                             <td>
-                                            @if($product->is_active == 1)
-                                                    <span class="badge bg-success">Active</span>
-                                            @endif
-                                            @if($product->is_active == 0)
-                                                    <span class="badge bg-warning">Inactive</span>
-                                            @endif
-                                                {{--                                            <span class="badge bg-danger">Deleted</span>--}}
+                                                @if($product->is_active == 1)
+                                                        <span class="badge bg-success d-block mb-1">Active</span>
+                                                @endif
+                                                @if($product->is_active == 0)
+                                                        <span class="badge bg-warning d-block mb-1">Inactive</span>
+                                                @endif
+                                                @if($product->featured == 1)
+                                                    <span class="badge bg-primary d-block mb-1">Featured</span>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

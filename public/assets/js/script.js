@@ -8,10 +8,15 @@ FReader.onload = function(e) {
 };
 
 // выполнение функции при выборки файла
-try {
-    document.querySelector(".uploadImage").addEventListener("change", loadImageFile);
-} catch(e) {
-};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    try {
+        document.querySelector(".uploadImage").addEventListener("change", loadImageFile);
+    } catch(e) {
+        // console.log(e);
+    };
+});
 
 // функция выборки файла
 function loadImageFile() {
@@ -25,12 +30,17 @@ function loadImageFile() {
 
 //snackbar
 
-function showSnackbar () {
-
-    const snackbar = document.querySelector('.snackbar_notification');
-
-    setTimeout( () => snackbar.classList.remove('hiddenElem'), 1000);
-    setTimeout( () => snackbar.classList.add('hiddenElem'), 5000);
-}
-
-showSnackbar();
+// function showSnackbar () {
+//
+//     try {
+//         const snackbar = document.querySelector('.snackbar_notification');
+//
+//         setTimeout( () => snackbar.classList.remove('hiddenElem'), 1000);
+//         setTimeout( () => snackbar.classList.add('hiddenElem'), 5000);
+//     } catch (e) {
+//
+//     }
+//
+// }
+//
+// showSnackbar();

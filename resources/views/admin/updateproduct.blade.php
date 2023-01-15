@@ -125,7 +125,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Description</label>
-                                        <textarea class="form-control" name="description" placeholder="Description" rows="3" minlength="5" maxlength="65535" required>{{old('description') ? old('description') : $product->description}}</textarea>
+                                        <textarea class="form-control" name="description" placeholder="Description" rows="3" required minlength="5" maxlength="65535" >{{old('description') ? old('description') : $product->description}}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Price</label>
@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label w-100">Upload images</label>
-                                        <input type="file" name="images[]" required multiple accept="image/*,image/jpeg">
+                                        <input type="file" id="result" name="images[]" multiple accept="image/*,image/jpeg">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </form>

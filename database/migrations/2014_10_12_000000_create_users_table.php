@@ -21,9 +21,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('phone')->unique()->default("");
-            $table->string('avatar')->default("");
+            $table->string('phone')->unique()->nullable();
+            $table->string('avatar')->default("default_avatar.svg");
             $table->boolean('is_active')->default(1);
+            $table->softDeletes();
         });
     }
 

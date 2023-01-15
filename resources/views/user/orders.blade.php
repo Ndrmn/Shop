@@ -24,10 +24,20 @@
                                     <div class="card shadow-none mb-3 mb-lg-0 border">
                                         <div class="card-body">
                                             <div class="list-group list-group-flush">
-                                                <a href="{{asset('user/1/personal')}}" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Personal information <i class='bx bx-user-circle fs-5'></i></a>
-                                                <a href="{{asset('user/1/orders')}}" class="list-group-item active d-flex justify-content-between align-items-center">Orders <i class='bx bx-cart-alt fs-5'></i></a>
-                                                <a href="{{asset('user/1/wishlist')}}" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Wishlist <i class='bx bx-heart fs-5'></i></a>
-                                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Logout <i class='bx bx-log-out fs-5'></i></a>
+                                                <a href="{{asset( route('user.show',  Auth::user()->id))}}" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Personal information <i class='bx bx-user-circle fs-5'></i></a>
+                                                <a href="{{asset( route('user.wishlist',  Auth::user()->id))}}" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Wishlist <i class='bx bx-heart fs-5'></i></a>
+                                                <a href="{{asset( route('user.cart',  Auth::user()->id))}}" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Cart <i class='bx bx-cart-alt fs-5'></i></a>
+                                                <a href="{{asset( route('user.orders',  Auth::user()->id))}}" class="list-group-item d-flex justify-content-between align-items-center active">Orders <i class='bx bx-shopping-bag fs-5'></i></a>
+                                                <a class="list-group-item d-flex justify-content-between align-items-center bg-transparent" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                    <i class='bx bx-log-out fs-5'></i>
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
