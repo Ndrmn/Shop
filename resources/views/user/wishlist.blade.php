@@ -90,7 +90,20 @@
                                                                     </div>
                                                                     <div class="product-action mt-2">
                                                                         <div class="d-grid gap-2">
-                                                                            <a href="javascript:;" class="btn btn-dark btn-ecomm">	<i class='bx bxs-cart-add'></i>Add to Cart</a>
+                                                                            @auth()
+                                                                                <form action="{{route('cart.add', $product->id)}}" method="post">
+                                                                                    @csrf
+                                                                                    <input type="text" name="quantity" value="1" class="d-none">
+                                                                                    <button type="submit" class="border-0 bg-transparent" style="padding: 0px;width: 100%">
+                                                                                        <div class="btn btn-dark btn-ecomm"  style="width: 100%">
+                                                                                            <i class="bx bxs-cart-add"></i>
+                                                                                            Add to Cart
+                                                                                        </div>
+                                                                                    </button>
+                                                                                </form>
+                                                                            @else
+                                                                                <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                                                            @endauth
                                                                             <a href="{{route('product.show', $product->id)}}" class="btn btn-light btn-ecomm"><i class='bx bx-zoom-in'></i>Details</a>
                                                                         </div>
                                                                     </div>

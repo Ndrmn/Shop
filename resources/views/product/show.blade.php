@@ -66,7 +66,10 @@
                                         <div class="row row-cols-auto align-items-center mt-3">
                                             <div class="col">
                                                 <label class="form-label">Quantity</label>
-                                                <select class="form-select form-select-sm">
+                                                @auth()
+                                                    <form action="{{route('cart.add', $product->id)}}" method="post">
+                                                        @csrf
+                                                <select name="quantity" class="form-select form-select-sm">
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
@@ -82,23 +85,41 @@
                                         </div>
                                         <!--end row-->
                                         <div class="d-flex gap-2 mt-3">
-                                            <a href="javascript:;" class="btn btn-white btn-ecomm">	<i class="bx bxs-cart-add"></i>Add to Cart</a>
+
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        <div class="btn btn-white btn-ecomm">
+                                                            <i class="bx bxs-cart-add"></i>
+                                                            Add to Cart
+                                                        </div>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <a href="javascript:;" class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                            @endauth
+                                            @auth()
                                             <form action="{{route('user.wishlist.store', $product->id)}}" method="post">
                                                 @csrf
                                                 <button type="submit" class="border-0 bg-transparent">
                                                     <div class="btn btn-light btn-ecomm">
-                                                        @auth()
-                                                            @if (Auth::user()->favorites->contains($product->id))
-                                                                <i class="bx bxs-heart"></i>
-                                                                Remove from Wishlist
-                                                            @else
-                                                                <i class="bx bx-heart"></i>
-                                                                Add to Wishlist
-                                                            @endif
-                                                        @endauth
+                                                        @if (Auth::user()->favorites->contains($product->id))
+                                                            <i class="bx bxs-heart"></i>
+                                                            Remove from Wishlist
+                                                        @else
+                                                            <i class="bx bx-heart"></i>
+                                                            Add to Wishlist
+                                                        @endif
                                                     </div>
                                                 </button>
                                             </form>
+                                            @else
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <div class="btn btn-light btn-ecomm">
+                                                         <i class="bx bx-heart"></i>
+                                                         Add to Wishlist
+                                                    </div>
+                                                </button>
+                                            @endauth
+
 {{--                                            <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>--}}
                                         </div>
                                         <hr/>

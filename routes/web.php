@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/wishlist', function () {
-    return view('wishlist/index');
-});
-
 Route::get('/signup', function () {
     return view('user/signup');
 });
@@ -103,13 +99,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/wishlist/{product}/delete', [App\Http\Controllers\FavoriteController::class, 'delete'])->name('user.wishlist.delete');
 
-
     Route::get('/user/{user}/orders', [App\Http\Controllers\UserController::class, 'orders'])->name('user.orders');
 
-    Route::get('/user/{user}/cart', [App\Http\Controllers\UserController::class, 'cart'])->name('user.cart');
+    Route::get('/user/{user}/cart', [App\Http\Controllers\CartController::class, 'index'])->name('user.cart');
 
     Route::patch('/user/{user}/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 
+    Route::post('/cart/{product}/add', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/{product}/change', [App\Http\Controllers\CartController::class, 'change'])->name('cart.change');
+    Route::delete('/cart/{cart}/remove', [App\Http\Controllers\CartController::class, 'destroy'])->name('cart.remove');
+    Route::delete('/cart/{user}/removeall', [App\Http\Controllers\CartController::class, 'destroyAll'])->name('cart.removeAll');
 });
 
 Route::get('/wishlist', [App\Http\Controllers\FavoriteController::class, 'wishlist'])->name('wishlist');

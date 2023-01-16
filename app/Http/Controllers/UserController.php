@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -80,11 +82,14 @@ class UserController extends Controller
         return view('user.orders');
     }
 
-    public function cart()
-    {
-
-        return view('user.cart');
-    }
+//    public function cart()
+//    {
+//        $user = Auth::user();
+//
+//        $products = $user->products;
+//
+//        return view('user.cart', ['products' => $products, 'brands' => Brand::all()]);
+//    }
 
     public function update(UserRequest $request, User $user){
 

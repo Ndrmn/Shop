@@ -51,11 +51,11 @@
                         <div class="card rounded-0 border shadow-none">
                             <div class="row g-0 align-items-center">
                                 <div class="col">
-                                    <img src="assets/images/promo/01.png" class="img-fluid" alt="" />
+                                    <img src="assets/images/main-page/m.jpg" class="img-fluid mt-1 mb-1" alt="" />
                                 </div>
                                 <div class="col">
                                     <div class="card-body">
-                                        <h5 class="card-title text-uppercase">Mens' watches</h5>
+                                        <h5 class="card-title text-uppercase">Men's<br>watches</h5>
                                         <p class="card-text text-uppercase">Starting at $9</p>	<a href="/products?categories%5B%5D=1" class="btn btn-dark btn-ecomm">SHOP NOW</a>
                                     </div>
                                 </div>
@@ -66,12 +66,12 @@
                         <div class="card rounded-0 border shadow-none">
                             <div class="row g-0 align-items-center">
                                 <div class="col">
-                                    <img src="assets/images/promo/02.png" class="img-fluid" alt="" />
+                                    <img src="assets/images/main-page/w.jpg" class="img-fluid mt-1 mb-1" alt="" />
                                 </div>
                                 <div class="col">
                                     <div class="card-body">
-                                        <h5 class="card-title text-uppercase">Womens' watches</h5>
-                                        <p class="card-text text-uppercase">Starting at $9</p>	<a href="javascript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+                                        <h5 class="card-title text-uppercase">Women's<br>watches</h5>
+                                        <p class="card-text text-uppercase">Starting at $9</p>	<a href="/products?categories%5B%5D=2" class="btn btn-dark btn-ecomm">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -81,12 +81,12 @@
                         <div class="card rounded-0 border shadow-none">
                             <div class="row g-0 align-items-center">
                                 <div class="col">
-                                    <img src="assets/images/promo/03.png" class="img-fluid" alt="" />
+                                    <img src="assets/images/main-page/k.png" class="img-fluid mt-1 mb-1" alt="" />
                                 </div>
                                 <div class="col">
                                     <div class="card-body">
-                                        <h5 class="card-title text-uppercase">Kids' watches</h5>
-                                        <p class="card-text text-uppercase">Starting at $9</p>	<a href="javascript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+                                        <h5 class="card-title text-uppercase">Kid's<br>watches</h5>
+                                        <p class="card-text text-uppercase">Starting at $9</p>	<a href="/products?categories%5B%5D=3" class="btn btn-dark btn-ecomm">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <h5 class="text-uppercase mb-0">FEATURED PRODUCTS</h5>
-                    <a href="javascript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0">More Products<i class='bx bx-chevron-right'></i></a>
+                    <a href="/products" class="btn btn-dark btn-ecomm ms-auto rounded-0">More Products<i class='bx bx-chevron-right'></i></a>
                 </div>
                 <hr/>
                 <div class="product-grid">
@@ -112,20 +112,24 @@
                             <div class="card rounded-0 product-card">
                                 <div class="card-header bg-transparent border-bottom-0">
                                     <div class="d-flex align-items-center justify-content-end gap-3">
+                                        @auth()
                                         <form action="{{route('user.wishlist.store', $product->id)}}" method="post">
                                             @csrf
                                             <button type="submit" class="border-0 bg-transparent">
                                                 <div class="product-wishlist">
-                                                    @auth()
+
                                                         @if (Auth::user()->favorites->contains($product->id))
                                                             <i class="bx bxs-heart"></i>
                                                         @else
                                                             <i class="bx bx-heart"></i>
                                                         @endif
-                                                    @endauth
+
                                                 </div>
                                             </button>
                                         </form>
+                                        @else
+                                            <i class="bx bx-heart"></i>
+                                        @endauth
                                     </div>
                                 </div>
                                 <a href="{{asset('/products/' . $product->id )}}">
@@ -153,7 +157,20 @@
                                         </div>
                                         <div class="product-action mt-2">
                                             <div class="d-grid gap-2">
-                                                <a href="javascript:;" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart-add'></i>Add to Cart</a>
+                                                @auth()
+                                                    <form action="{{route('cart.add', $product->id)}}" method="post">
+                                                        @csrf
+                                                        <input type="text" name="quantity" value="1" class="d-none">
+                                                        <button type="submit" class="border-0 bg-transparent" style="padding: 0px;width: 100%">
+                                                            <div class="btn btn-dark btn-ecomm"  style="width: 100%">
+                                                                <i class="bx bxs-cart-add"></i>
+                                                                Add to Cart
+                                                            </div>
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                                @endauth
                                                 <a href="/products/{{$product->id}}" class="btn btn-light btn-ecomm"><i class='bx bx-zoom-in'></i>Details</a>
                                             </div>
                                         </div>

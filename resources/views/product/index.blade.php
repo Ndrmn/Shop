@@ -127,20 +127,22 @@
                                     @foreach($products as $product)
                                         <div class="card rounded-0 product-card">
                                             <div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
+                                                @auth()
                                                 <form action="{{route('user.wishlist.store', $product->id)}}" method="post">
                                                     @csrf
                                                     <button type="submit" class="border-0 bg-transparent">
                                                         <div class="product-wishlist">
-                                                            @auth()
-                                                                @if (Auth::user()->favorites->contains($product->id))
-                                                                 <i class="bx bxs-heart"></i>
-                                                                @else
-                                                                 <i class="bx bx-heart"></i>
-                                                                @endif
-                                                            @endauth
+                                                            @if (Auth::user()->favorites->contains($product->id))
+                                                                <i class="bx bxs-heart"></i>
+                                                            @else
+                                                                <i class="bx bx-heart"></i>
+                                                            @endif
                                                         </div>
                                                     </button>
                                                 </form>
+                                                @else
+                                                    <i class="bx bx-heart"></i>
+                                                @endauth
                                             </div>
                                             <div class="row g-0">
                                                 <div class="col-md-4">
@@ -170,7 +172,20 @@
                                                             </div>
                                                             <div class="product-action mt-2">
                                                                 <div class="d-flex gap-2">
-                                                                    <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                                                    @auth()
+                                                                        <form action="{{route('cart.add', $product->id)}}" method="post">
+                                                                            @csrf
+                                                                            <input type="text" name="quantity" value="1" class="d-none">
+                                                                            <button type="submit" class="border-0 bg-transparent">
+                                                                                <div class="btn btn-dark btn-ecomm">
+                                                                                    <i class="bx bxs-cart-add"></i>
+                                                                                    Add to Cart
+                                                                                </div>
+                                                                            </button>
+                                                                        </form>
+                                                                    @else
+                                                                        <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                                                    @endauth
                                                                     <a href="/products/{{$product->id}}" class="btn btn-light btn-ecomm"><i class="bx bx-zoom-in"></i>Details</a>
                                                                 </div>
                                                             </div>
