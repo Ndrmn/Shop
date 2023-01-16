@@ -56,7 +56,8 @@
                                 <div class="col">
                                     <div class="card-body">
                                         <h5 class="card-title text-uppercase">Men's<br>watches</h5>
-                                        <p class="card-text text-uppercase">Starting at $9</p>	<a href="/products?categories%5B%5D=1" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+{{--                                        <p class="card-text text-uppercase">Starting at $9</p>--}}
+                                        <a href="/products?categories%5B%5D=1" class="btn btn-dark btn-ecomm">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +72,8 @@
                                 <div class="col">
                                     <div class="card-body">
                                         <h5 class="card-title text-uppercase">Women's<br>watches</h5>
-                                        <p class="card-text text-uppercase">Starting at $9</p>	<a href="/products?categories%5B%5D=2" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+{{--                                        <p class="card-text text-uppercase">Starting at $9</p>--}}
+                                        <a href="/products?categories%5B%5D=2" class="btn btn-dark btn-ecomm">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +88,8 @@
                                 <div class="col">
                                     <div class="card-body">
                                         <h5 class="card-title text-uppercase">Kid's<br>watches</h5>
-                                        <p class="card-text text-uppercase">Starting at $9</p>	<a href="/products?categories%5B%5D=3" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+{{--                                        <p class="card-text text-uppercase">Starting at $9</p>--}}
+                                        <a href="/products?categories%5B%5D=3" class="btn btn-dark btn-ecomm">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>

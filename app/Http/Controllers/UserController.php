@@ -76,21 +76,6 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
-    public function orders()
-    {
-
-        return view('user.orders');
-    }
-
-//    public function cart()
-//    {
-//        $user = Auth::user();
-//
-//        $products = $user->products;
-//
-//        return view('user.cart', ['products' => $products, 'brands' => Brand::all()]);
-//    }
-
     public function update(UserRequest $request, User $user){
 
                 if ($request->password == null) {

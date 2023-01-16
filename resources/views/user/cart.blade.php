@@ -119,8 +119,13 @@
                                                     <div class="card-body">
                                                         <h5 class="mb-0">Order Total:<span class="float-end">$ {{$total}}.00</span></h5>
                                                         <div class="my-4"></div>
-                                                        <div class="d-grid"> <a href="javascript:;" class="btn btn-dark btn-ecomm">Proceed to Checkout</a>
-                                                        </div>
+                                                        @if($total != 0)
+                                                            <form action="{{route('transaction.store', Auth::user()->id)}}" method="post">
+                                                                @csrf
+                                                                <div class="d-grid"> <button type="submit" class="btn btn-dark btn-ecomm">Proceed to Checkout</button>
+                                                                </div>
+                                                            </form>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

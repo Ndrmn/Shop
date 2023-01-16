@@ -14,26 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/signup', function () {
-    return view('user/signup');
-});
-
-Route::get('/signin', function () {
-    return view('user/signin');
-});
-
-Route::get('/forgot', function () {
-    return view('user/forgot');
-});
-
-Route::get('/reset', function () {
-    return view('user/reset');
-});
-
-Route::get('/blocked', function () {
-    return view('user/blocked');
-});
-
 Route::get('/', [App\Http\Controllers\ProductController::class, 'index_featured'])->name('product.index_featured');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
 Route::get('/products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
@@ -82,14 +62,11 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::patch('/admin/users/{user}/update', [App\Http\Controllers\UserController::class, 'adminUpdate'])->name('admin.user.update');
 
     Route::delete('/admin/users/{user}/destroy', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.user.delete');
-
-    Route::get('/admin/transactions', function () {
-        return view('admin/transactions');
-    });
+    Route::get('/admin/transactions', [App\Http\Controllers\TransactionController::class, 'indexAdmin'])->name('admin.transactions');
 });
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/user/{user}/personal', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
 
@@ -99,7 +76,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/wishlist/{product}/delete', [App\Http\Controllers\FavoriteController::class, 'delete'])->name('user.wishlist.delete');
 
-    Route::get('/user/{user}/orders', [App\Http\Controllers\UserController::class, 'orders'])->name('user.orders');
+    Route::get('/user/{user}/orders', [App\Http\Controllers\TransactionController::class, 'index'])->name('user.orders');
+
+    Route::post('/user/{user}/orders', [App\Http\Controllers\TransactionController::class, 'store'])->name('transaction.store');
+
 
     Route::get('/user/{user}/cart', [App\Http\Controllers\CartController::class, 'index'])->name('user.cart');
 
@@ -112,5 +92,9 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/wishlist', [App\Http\Controllers\FavoriteController::class, 'wishlist'])->name('wishlist');
+
+Route::get('/blocked', function () {
+    return view('user/blocked');
+});
 
 
