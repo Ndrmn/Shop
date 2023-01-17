@@ -31,6 +31,7 @@
 <div class="wrapper">
     @include('main.header')
     @yield('content')
+    @include('parts.notification')
     @include('main.footer')
 <!-- Bootstrap JS -->
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>

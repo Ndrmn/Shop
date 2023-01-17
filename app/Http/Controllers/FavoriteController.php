@@ -26,7 +26,13 @@ class FavoriteController extends Controller
     public function store(Product $product)
     {
 
-        Auth::user()->favorites()->toggle($product->id);
+        $toggle = Auth::user()->favorites()->toggle($product->id);
+
+        if ($toggle['attached'] != []) {
+            session()->flash('notification', ['message' => 'Product added to favorites']);
+        } else {
+            session()->flash('notification', ['message' => 'Product removed from favorites']);
+        }
 
         return redirect()->back();
     }
@@ -36,6 +42,7 @@ class FavoriteController extends Controller
 
         Auth::user()->favorites()->detach($product->id);
 
+        session()->flash('notification', ['message' => 'Product removed from favorites']);
         return redirect()->back();
     }
 }

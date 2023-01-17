@@ -66,7 +66,7 @@
                                         <div class="row row-cols-auto align-items-center mt-3">
                                             <div class="col">
                                                 <label class="form-label">Quantity</label>
-                                                @auth()
+
                                                     <form action="{{route('cart.add', $product->id)}}" method="post">
                                                         @csrf
                                                 <select name="quantity" class="form-select form-select-sm">
@@ -84,6 +84,7 @@
                                             </div>
                                         </div>
                                         <!--end row-->
+                                        @auth()
                                         <div class="d-flex gap-2 mt-3">
 
                                                     <button type="submit" class="border-0 bg-transparent">
@@ -92,10 +93,11 @@
                                                             Add to Cart
                                                         </div>
                                                     </button>
-                                                </form>
+
                                             @else
-                                                <a href="javascript:;" class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                                <a href="javascript:;" class="btn btn-white btn-ecomm mt-3"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
                                             @endauth
+                                            </form>
                                             @auth()
                                             <form action="{{route('user.wishlist.store', $product->id)}}" method="post">
                                                 @csrf
@@ -111,13 +113,6 @@
                                                     </div>
                                                 </button>
                                             </form>
-                                            @else
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <div class="btn btn-light btn-ecomm">
-                                                         <i class="bx bx-heart"></i>
-                                                         Add to Wishlist
-                                                    </div>
-                                                </button>
                                             @endauth
 
 {{--                                            <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>--}}

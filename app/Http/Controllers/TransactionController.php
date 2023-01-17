@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductTransaction;
 use App\Models\Transaction;
+use App\Notifications\Transactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,6 +65,10 @@ class TransactionController extends Controller
         foreach ($cartItems as $item) {
             $item->delete();
         }
+
+        $user->notify(new Transactions($transaction));
+
+        session()->flash('notification', ['message' => 'Order completed successfully']);
 
         return redirect()->route('user.orders', ['user' => Auth::user()]);
     }

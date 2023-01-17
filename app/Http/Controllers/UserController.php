@@ -99,7 +99,10 @@ class UserController extends Controller
                 'avatar' => $request->file('avatar')->store('uploads/users/' . $user->id, 'public')
             ]);
         };
-        return view('user.personal', ["user" => Auth::user()]);
+
+        session()->flash('notification', ['message' => 'Personal data changed successfully']);
+
+        return redirect()->route('user.show', Auth::user()->id);
     }
 }
 

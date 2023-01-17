@@ -130,8 +130,8 @@
                                                 </div>
                                             </button>
                                         </form>
-                                        @else
-                                            <i class="bx bx-heart"></i>
+{{--                                        @else--}}
+{{--                                            <i class="bx bx-heart"></i>--}}
                                         @endauth
                                     </div>
                                 </div>

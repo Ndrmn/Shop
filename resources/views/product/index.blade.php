@@ -140,8 +140,6 @@
                                                         </div>
                                                     </button>
                                                 </form>
-                                                @else
-                                                    <i class="bx bx-heart"></i>
                                                 @endauth
                                             </div>
                                             <div class="row g-0">

@@ -54,10 +54,5 @@
             <!--end row-->
         </div>
     </section>
-    <div class="snackbar_notification rounded hiddenElem">
-        <div class="snackbar_text">
-            Test notification. So much text.
-        </div>
-    </div>
 </footer>
 <!--end footer section-->

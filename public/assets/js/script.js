@@ -30,17 +30,17 @@ function loadImageFile() {
 
 //snackbar
 
-// function showSnackbar () {
-//
-//     try {
-//         const snackbar = document.querySelector('.snackbar_notification');
-//
-//         setTimeout( () => snackbar.classList.remove('hiddenElem'), 1000);
-//         setTimeout( () => snackbar.classList.add('hiddenElem'), 5000);
-//     } catch (e) {
-//
-//     }
-//
-// }
-//
-// showSnackbar();
+function showSnackbar () {
+
+    try {
+        const snackbar = document.querySelector('.snackbar_notification');
+
+        setTimeout( () => snackbar.classList.remove('hiddenElem'), 1000);
+        setTimeout( () => snackbar.classList.add('hiddenElem'), 5000);
+    } catch (e) {
+
+    }
+
+}
+
+showSnackbar();

@@ -27,8 +27,8 @@
                                     @guest
                                         <li class="nav-item"><a class="nav-link cart-link" href="{{ route('login') }}"><i class='bx bx-user'></i></a>
                                         </li>
-                                        <li class="nav-item"><a href="/wishlist" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
-                                        </li>
+{{--                                        <li class="nav-item"><a href="/wishlist" class="nav-link cart-link"><i class='bx bx-heart'></i></a>--}}
+{{--                                        </li>--}}
                                         <li class="nav-item dropdown dropdown-large">
                                             <a href="/login" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link">
                                                 {{--                                            <span class="alert-count">8</span>--}}

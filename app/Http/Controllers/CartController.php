@@ -45,6 +45,8 @@ class CartController extends Controller
                 'quantity' => $request->quantity
             ]);
         }
+        session()->flash('notification', ['message' => 'Product added to cart']);
+
         return redirect()->back();
     }
 
@@ -54,9 +56,12 @@ class CartController extends Controller
 
         if($request->quantity == 0) {
             $currentProduct->delete();
+            session()->flash('notification', ['message' => 'Product removed from cart']);
+
         } else {
             $currentProduct->quantity = $request->quantity;
             $currentProduct->save();
+            session()->flash('notification', ['message' => 'Product changed quantity in cart']);
         }
 
         return redirect()->back();
@@ -65,6 +70,8 @@ class CartController extends Controller
     public function destroy(Cart $cart) {
 
         $cart -> delete();
+
+        session()->flash('notification', ['message' => 'Product removed from cart']);
 
         return redirect()->back();
     }
@@ -75,6 +82,7 @@ class CartController extends Controller
             $item -> delete();
         }
 
+        session()->flash('notification', ['message' => 'All products have been removed from cart']);
         return redirect()->back();
     }
 }
