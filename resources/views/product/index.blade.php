@@ -153,8 +153,8 @@
                                                 <div class="col-md-8">
                                                     <div class="card-body">
                                                         <div class="product-info">
-                                                            <a href="javascript:;">
-                                                                <h6 class="product-name mb-2">
+                                                            <a href="/products/{{$product->id}}" class="pe-5">
+                                                                <h6 class="product-name mb-2 pe-5">
                                                                     @foreach($brands as $brand)
                                                                         @if($brand->id == $product->brand_id)
                                                                             {{$brand->title}}
